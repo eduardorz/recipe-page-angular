@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   selector: 'app-recetas',
   templateUrl: './recetas.component.html',
   styleUrls: ['./recetas.component.css']
 })
 export class RecetasComponent {
+  filtro: string = '';
   recetas = [
     {
       nombre: 'Tostada de Aguacate',
@@ -58,5 +60,11 @@ export class RecetasComponent {
 
   toggleFavorito(receta: any) {
     receta.favorito = !receta.favorito;
+  }
+
+  get recetasFiltradas() {
+    return this.recetas.filter(receta =>
+      receta.nombre.toLowerCase().includes(this.filtro.toLowerCase())
+    );
   }
 }

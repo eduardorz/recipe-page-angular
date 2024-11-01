@@ -1,4 +1,8 @@
-<div class="receta-card" *ngFor="let receta of recetas">
+<div class="busqueda-container">
+  <input type="text" [(ngModel)]="filtro" placeholder="Buscar recetas..." />
+</div>
+
+<div class="receta-card" *ngFor="let receta of recetasFiltradas">
   <img [src]="receta.imagen" alt="{{ receta.nombre }}" class="receta-imagen">
   <div class="receta-info">
     <h2>{{ receta.nombre }}
