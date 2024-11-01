@@ -1,80 +1,104 @@
+/* Estilos generales del contenedor */
 .recetas-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f7f7f7;
-    padding: 2rem;
-  }
-  
-  h1 {
-    color: #4a90e2;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .receta-card {
-    display: flex;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 1rem 0;
-    width: 100%;
-    max-width: 600px;
-    transition: transform 0.2s ease;
-  }
-  
-  .receta-card:hover {
-    transform: scale(1.02);
-  }
-  
-  .receta-imagen {
-    width: 250px;
-    height: auto;
-  }
-  
-  .receta-info {
-    padding: 1.5rem;
-    flex: 1;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
 
-  .favorito-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: red;
-  }
-  .favorito-btn:focus {
-    outline: none;
-  }  
-  
-  h2 {
-    color: #333;
-    font-size: 1.8rem;
-    margin-top: 0;
-  }
-  
-  p {
-    color: #666;
-    margin: 0.5rem 0 1.5rem;
-    font-size: 1.1rem;
-  }
-  
-  h3 {
-    font-size: 1.3rem;
-    color: #4a90e2;
-    margin-bottom: 0.5rem;
-  }
-  
-  ul {
-    padding-left: 1.5rem;
-    list-style-type: disc;
-  }
-  
-  li {
-    margin: 0.5rem 0;
-    color: #555;
-  }
-  
+/* Encabezado principal */
+h1 {
+  color: #4a90e2;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Tarjetas de receta */
+.receta-card {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.2s ease;
+}
+
+.receta-card:hover {
+  transform: scale(1.02);
+}
+
+/* Imagen dentro de la tarjeta de receta */
+.receta-imagen {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Información de la receta */
+.receta-info {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+/* Botón de favorito */
+.favorito-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: red;
+}
+.favorito-btn:focus {
+  outline: none;
+}  
+
+/* Contenedor de búsqueda */
+.busqueda-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Estilos de texto */
+h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-top: 0;
+}
+
+p {
+  color: #666;
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1.1rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+  color: #4a90e2;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+li {
+  margin: 0.5rem 0;
+  color: #555;
+}

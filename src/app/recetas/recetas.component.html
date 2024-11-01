@@ -1,19 +1,21 @@
-<div class="busqueda-container">
-  <input type="text" [(ngModel)]="filtro" placeholder="Buscar recetas..." />
-</div>
+<div class="recetas-container">
+  <div class="busqueda-container">
+    <input type="text" [(ngModel)]="filtro" placeholder="Buscar recetas..." />
+  </div>
 
-<div class="receta-card" *ngFor="let receta of recetasFiltradas">
-  <img [src]="receta.imagen" alt="{{ receta.nombre }}" class="receta-imagen">
-  <div class="receta-info">
-    <h2>{{ receta.nombre }}
-      <button (click)="toggleFavorito(receta)" class="favorito-btn">
-        {{ receta.favorito ? '❤️' : '🤍' }}
-      </button>
-    </h2>
-    <p>{{ receta.descripcion }}</p>
-    <h3>Pasos:</h3>
-    <ul>
-      <li *ngFor="let paso of receta.pasos">{{ paso }}</li>
-    </ul>
+  <div class="receta-card" *ngFor="let receta of recetasFiltradas">
+    <img [src]="receta.imagen" alt="{{ receta.nombre }}" class="receta-imagen">
+    <div class="receta-info">
+      <h2>{{ receta.nombre }}
+        <button (click)="toggleFavorito(receta)" class="favorito-btn">
+          {{ receta.favorito ? '❤️' : '🤍' }}
+        </button>
+      </h2>
+      <p>{{ receta.descripcion }}</p>
+      <h3>Pasos:</h3>
+      <ul>
+        <li *ngFor="let paso of receta.pasos">{{ paso }}</li>
+      </ul>
+    </div>
   </div>
 </div>
