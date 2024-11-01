@@ -38,6 +38,17 @@
     padding: 1.5rem;
     flex: 1;
   }
+
+  .favorito-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: red;
+  }
+  .favorito-btn:focus {
+    outline: none;
+  }  
   
   h2 {
     color: #333;

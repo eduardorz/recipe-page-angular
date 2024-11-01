@@ -1,15 +1,15 @@
-<div class="recetas-container">
-    <h1>Recetas Fáciles y Deliciosas</h1>
-    <div class="receta-card" *ngFor="let receta of recetas">
-      <img [src]="receta.imagen" alt="{{ receta.nombre }}" class="receta-imagen">
-      <div class="receta-info">
-        <h2>{{ receta.nombre }}</h2>
-        <p>{{ receta.descripcion }}</p>
-        <h3>Pasos:</h3>
-        <ul>
-          <li *ngFor="let paso of receta.pasos">{{ paso }}</li>
-        </ul>
-      </div>
-    </div>
+<div class="receta-card" *ngFor="let receta of recetas">
+  <img [src]="receta.imagen" alt="{{ receta.nombre }}" class="receta-imagen">
+  <div class="receta-info">
+    <h2>{{ receta.nombre }}
+      <button (click)="toggleFavorito(receta)" class="favorito-btn">
+        {{ receta.favorito ? '❤️' : '🤍' }}
+      </button>
+    </h2>
+    <p>{{ receta.descripcion }}</p>
+    <h3>Pasos:</h3>
+    <ul>
+      <li *ngFor="let paso of receta.pasos">{{ paso }}</li>
+    </ul>
   </div>
-  
+</div>
