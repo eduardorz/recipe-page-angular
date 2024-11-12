@@ -65,13 +65,34 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+.calificacion {
+  font-size: 1.1rem;
+  color: #ff9800;
+  margin: 0.5rem 0;
+}
+
+.comentarios-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.comentarios-list li {
+  background-color: #f9f9f9;
+  border-left: 3px solid #4a90e2;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
 input[type="text"] {
   width: 100%;
   max-width: 500px;
   padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #636262;
   border-radius: 5px;
+  color: #777777;
 }
 
 /* Estilos de texto */

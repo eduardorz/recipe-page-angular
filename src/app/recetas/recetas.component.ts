@@ -2,6 +2,17 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+export interface Receta {
+  nombre: string;
+  descripcion: string;
+  imagen: string;
+  ingredientes: string[];
+  pasos: string[];
+  calificaciones: number[];
+  comentarios: { usuario: string, comentario: string }[];
+  favorito: boolean
+}
+
 @Component({
   standalone: true,
   imports: [CommonModule, FormsModule],
@@ -11,60 +22,184 @@ import { FormsModule } from '@angular/forms';
 })
 export class RecetasComponent {
   filtro: string = '';
-  recetas = [
+  recetas: Receta[] = [
     {
-      nombre: 'Tostada de Aguacate',
-      descripcion: 'Pan tostado con puré de aguacate, sal y pimienta.',
-      pasos: [
-        'Tostar el pan hasta que esté dorado.',
-        'Aplastar el aguacate y untarlo sobre el pan tostado.',
-        'Espolvorear con sal y pimienta al gusto.'
+      nombre: "Tacos",
+      descripcion: "Deliciosos tacos mexicanos con carne y salsa.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Tortilla", "Carne", "Queso", "Salsa"],
+      pasos: ["Calentar tortilla", "Agregar carne", "Espolvorear queso", "Agregar salsa"],
+      calificaciones: [4, 5],
+      comentarios: [
+        { usuario: "Carlos", comentario: "¡Muy buenos tacos!" },
+        { usuario: "Ana", comentario: "Me encantaron." }
       ],
-      imagen: 'https://images.unsplash.com/photo-1687276287139-88f7333c8ca4?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       favorito: false
     },
     {
-      nombre: 'Ensalada Griega',
-      descripcion: 'Tomate, pepino, cebolla, aceitunas y queso feta.',
-      pasos: [
-        'Cortar el tomate, pepino y cebolla en trozos pequeños.',
-        'Añadir las aceitunas y el queso feta desmenuzado.',
-        'Mezclar y añadir aceite de oliva al gusto.'
+      nombre: "Pizza Margherita",
+      descripcion: "Pizza clásica italiana con tomate, albahaca y mozzarella.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Masa de pizza", "Tomate", "Mozzarella", "Albahaca"],
+      pasos: ["Preparar masa", "Agregar tomate y mozzarella", "Hornear", "Añadir albahaca fresca"],
+      calificaciones: [5, 5, 4],
+      comentarios: [
+        { usuario: "Luis", comentario: "Sabor auténtico." },
+        { usuario: "Sofía", comentario: "¡Deliciosa y fácil de hacer!" }
       ],
-      imagen: 'https://plus.unsplash.com/premium_photo-1690561082636-06237f98bfab?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       favorito: false
     },
     {
-      nombre: 'Batido de Frutas',
-      descripcion: 'Mezcla de plátano, fresas y leche.',
-      pasos: [
-        'Cortar el plátano y las fresas en trozos.',
-        'Colocar las frutas en la licuadora y añadir leche.',
-        'Licuar hasta obtener una mezcla homogénea.'
+      nombre: "Sushi",
+      descripcion: "Sushi casero con arroz, pescado y vegetales.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Arroz", "Nori", "Pescado", "Pepino", "Aguacate"],
+      pasos: ["Preparar arroz", "Colocar nori y arroz", "Agregar pescado y vegetales", "Enrollar y cortar"],
+      calificaciones: [5, 3, 4],
+      comentarios: [
+        { usuario: "Karla", comentario: "Muy fresco y delicioso." },
+        { usuario: "Tomás", comentario: "¡Un poco complicado de hacer!" }
       ],
-      imagen: 'https://plus.unsplash.com/premium_photo-1663126827264-409d695e0be7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       favorito: false
     },
     {
-      nombre: 'Pasta al Pesto',
-      descripcion: 'Pasta con salsa de pesto, queso parmesano y nueces.',
-      pasos: [
-        'Cocinar la pasta hasta que esté al dente.',
-        'Mezclar la pasta con la salsa de pesto.',
-        'Espolvorear con queso parmesano y nueces picadas.'
+      nombre: "Hamburguesa",
+      descripcion: "Hamburguesa clásica con carne, queso y vegetales.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Pan", "Carne", "Queso", "Lechuga", "Tomate"],
+      pasos: ["Cocinar carne", "Armar hamburguesa", "Agregar vegetales y queso", "Servir con papas fritas"],
+      calificaciones: [5, 5, 4],
+      comentarios: [
+        { usuario: "Juan", comentario: "¡Perfecta para una tarde!" },
+        { usuario: "Lucía", comentario: "Muy sabrosa y fácil de hacer." }
       ],
-      imagen: 'https://plus.unsplash.com/premium_photo-1661293863488-4bed6c84c77a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      favorito: false
+    },
+    {
+      nombre: "Ensalada César",
+      descripcion: "Ensalada fresca con lechuga, crutones y aderezo césar.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Lechuga", "Crutones", "Pollo", "Parmesano", "Aderezo César"],
+      pasos: ["Preparar lechuga", "Cocinar pollo", "Agregar crutones y aderezo", "Espolvorear queso"],
+      calificaciones: [4, 5, 3],
+      comentarios: [
+        { usuario: "Raúl", comentario: "Muy ligera y sabrosa." },
+        { usuario: "Marta", comentario: "Perfecta para el almuerzo." }
+      ],
+      favorito: false
+    },
+    {
+      nombre: "Ramen",
+      descripcion: "Sopa japonesa con fideos, caldo y vegetales.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Fideos", "Caldo", "Huevos", "Algas", "Verduras"],
+      pasos: ["Hervir caldo", "Cocinar fideos", "Agregar verduras y huevo", "Servir caliente"],
+      calificaciones: [5, 4, 5],
+      comentarios: [
+        { usuario: "Pedro", comentario: "Me recordó a Japón." },
+        { usuario: "Sara", comentario: "Increíble para los días fríos." }
+      ],
+      favorito: false
+    },
+    {
+      nombre: "Paella",
+      descripcion: "Plato tradicional español con mariscos y arroz.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Arroz", "Mariscos", "Pimiento", "Guisantes", "Azafrán"],
+      pasos: ["Sofreír mariscos", "Agregar arroz y especias", "Cocinar hasta que se absorba el caldo"],
+      calificaciones: [5, 5, 4],
+      comentarios: [
+        { usuario: "Manuel", comentario: "Increíble sabor a mar." },
+        { usuario: "Estela", comentario: "Auténtica paella española." }
+      ],
+      favorito: false
+    },
+    {
+      nombre: "Tarta de Manzana",
+      descripcion: "Tarta dulce con manzanas y canela.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Manzanas", "Masa", "Azúcar", "Canela"],
+      pasos: ["Preparar masa", "Agregar manzanas con canela", "Hornear"],
+      calificaciones: [4, 5, 4],
+      comentarios: [
+        { usuario: "Laura", comentario: "Dulce y deliciosa." },
+        { usuario: "Diego", comentario: "¡Perfecta con helado!" }
+      ],
+      favorito: false
+    },
+    {
+      nombre: "Falafel",
+      descripcion: "Bolitas de garbanzos fritas, típicas del Medio Oriente.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Garbanzos", "Cebolla", "Ajo", "Perejil", "Comino"],
+      pasos: ["Mezclar garbanzos y especias", "Formar bolitas", "Freír hasta dorar"],
+      calificaciones: [5, 4, 5],
+      comentarios: [
+        { usuario: "Mohammed", comentario: "¡Muy auténtico!" },
+        { usuario: "Elena", comentario: "Crocante y delicioso." }
+      ],
+      favorito: false
+    },
+    {
+      nombre: "Brownie de Chocolate",
+      descripcion: "Brownie húmedo con chocolate y nueces.",
+      imagen: "https://media.istockphoto.com/id/943483254/es/vector/dulce-sabrosa-a-la-parrilla-piernas-de-pavo-de-pollo-asado-con-verduras-en-rodajas-patatas.jpg?s=612x612&w=0&k=20&c=PDQQxf_d2yEfENnlVGpOXJg0dexHd-TD8sTjagsWuDc=",
+      ingredientes: ["Chocolate", "Mantequilla", "Azúcar", "Harina", "Nueces"],
+      pasos: ["Derretir chocolate y mantequilla", "Agregar ingredientes secos", "Hornear"],
+      calificaciones: [5, 5, 5],
+      comentarios: [
+        { usuario: "Valeria", comentario: "¡Tan bueno como en la pastelería!" },
+        { usuario: "Álvaro", comentario: "Perfecto para los amantes del chocolate." }
+      ],
       favorito: false
     }
   ];
 
-  toggleFavorito(receta: any) {
-    receta.favorito = !receta.favorito;
-  }
+  nuevaCalificacion: number = 0;
+  nuevoComentario: string = '';
+  usuarioComentario: string = '';
 
   get recetasFiltradas() {
+    if (!this.filtro) {
+      return this.recetas;
+    }
     return this.recetas.filter(receta =>
       receta.nombre.toLowerCase().includes(this.filtro.toLowerCase())
     );
+  }
+
+  toggleFavorito(receta: Receta) {
+    receta.favorito = !receta.favorito;
+  }
+
+  ngOnInit(): void {
+    // Inicializar datos si es necesario
+  }
+
+  agregarCalificacion(receta: Receta): void {
+    if (this.nuevaCalificacion >= 1 && this.nuevaCalificacion <= 5) {
+      receta.calificaciones.push(this.nuevaCalificacion);
+      this.nuevaCalificacion = 0;
+    } else {
+      alert("La calificación debe estar entre 1 y 5");
+    }
+  }
+
+  calcularPromedio(calificaciones: number[]): number {
+    const total = calificaciones.reduce((acc, val) => acc + val, 0);
+    return calificaciones.length > 0 ? total / calificaciones.length : 0;
+  }
+
+  agregarComentario(receta: Receta): void {
+    if (this.usuarioComentario.trim() && this.nuevoComentario.trim()) {
+      receta.comentarios.push({
+        usuario: this.usuarioComentario,
+        comentario: this.nuevoComentario
+      });
+      this.usuarioComentario = '';
+      this.nuevoComentario = '';
+    } else {
+      alert("Ambos campos son necesarios para comentar");
+    }
   }
 }

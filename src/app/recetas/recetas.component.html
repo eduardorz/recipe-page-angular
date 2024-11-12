@@ -5,17 +5,44 @@
 
   <div class="receta-card" *ngFor="let receta of recetasFiltradas">
     <img [src]="receta.imagen" alt="{{ receta.nombre }}" class="receta-imagen">
+    
     <div class="receta-info">
       <h2>{{ receta.nombre }}
         <button (click)="toggleFavorito(receta)" class="favorito-btn">
           {{ receta.favorito ? '❤️' : '🤍' }}
         </button>
       </h2>
+
       <p>{{ receta.descripcion }}</p>
+
+      <!-- Mostrar Calificación Promedio -->
+      <div class="calificacion">
+        <strong>Calificación promedio:</strong> 
+        {{ calcularPromedio(receta.calificaciones) | number:'1.1-1' }} / 5
+      </div>
+
+      <!-- Pasos de preparación -->
       <h3>Pasos:</h3>
       <ul>
         <li *ngFor="let paso of receta.pasos">{{ paso }}</li>
       </ul>
+
+      <!-- Comentarios -->
+      <h3>Comentarios:</h3>
+      <ul class="comentarios-list">
+        <li *ngFor="let comentario of receta.comentarios">
+          <strong>{{ comentario.usuario }}:</strong> {{ comentario.comentario }}
+        </li>
+      </ul>
+
+      <!-- Campo de entrada de comentarios -->
+      <label for="usuario">Nombre</label>
+      <input [(ngModel)]="usuarioComentario" type="text" placeholder="Pablo">
+      
+      <label for="comentario">Comentario</label>
+      <input [(ngModel)]="nuevoComentario" type="text" placeholder="Lo intenté hacer pero se me quemaron :( ">
+      
+      <button (click)="agregarComentario(receta)">Enviar Comentario</button>
     </div>
   </div>
 </div>
